@@ -102,26 +102,6 @@ Age_Aware_Face_Search_System/
 `-- .gitignore
 ```
 
-## Installation
-
-### 1. Create a virtual environment
-
-Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### 2. Install dependencies
-
-```powershell
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-Note: On the first run, InsightFace may download the `buffalo_l` model pack automatically. An internet connection may be required if the model is not already cached.
-
 ## Data Preparation
 
 Place gallery images in:
@@ -196,15 +176,6 @@ python -m src.recognition.test_insightface
 
 The script checks image loading, face detection, and prints the detected embedding shape.
 
-## Person ID Naming Rule
-
-In `build_gallery.py`, `person_id` is inferred from the image filename:
-
-- If the filename is `person_001_01.jpg`, the `person_id` becomes `person_001`.
-- If the filename has no underscore, such as `ronaldo.jpg`, the `person_id` becomes `ronaldo`.
-
-Use consistent filenames if you want multiple images to be grouped under the same identity.
-
 ## Example Output
 
 ```text
@@ -233,14 +204,5 @@ Higher scores mean the query embedding and gallery embedding are more similar.
 ## Future Improvements
 
 - Add FAISS for faster search on larger galleries.
-- Add an evaluation pipeline with Recall@K, precision, and mAP.
-- Allow users to select a specific face when multiple faces are detected.
 - Add age estimation or age-aware re-ranking.
-- Evaluate cross-age search on datasets such as AgeDB or FG-NET.
-- Add Docker support for easier deployment.
-
-## Developer Notes
-
-- Rebuild `models/gallery_embeddings.pkl` after adding, removing, or renaming images in `data/raw/gallery/`.
-- `src.recognition.FaceEmbedder` currently uses `ctx_id=-1`, which means CPU mode. Change it to `ctx_id=0` if GPU support and ONNX Runtime GPU are configured correctly.
-- Avoid committing sensitive or personal face images if the repository is public.
+- Add evaluation metrics such as Recall@K and mAP.
