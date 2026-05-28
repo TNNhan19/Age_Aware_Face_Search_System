@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Gradio local files
+.gradio/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models and generated files
+models/*.pkl
+
+# Optional: ignore large raw data
+# data/raw/
+# data/processed/
+# data/generated/
+
+# Results cache
+results/metrics/*.csv
